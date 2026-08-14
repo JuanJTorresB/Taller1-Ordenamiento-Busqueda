@@ -1,14 +1,10 @@
-import java.util.Arrays;
+void main() {
+    int[] miArray = {70, 12, 19, 45, 11, 33, 26};
 
-class Main {
-    public static void main(String[] args) {
-        int[] miArray = {70, 12, 19, 45, 11, 33, 26};
+    MyAlgorithms myAlgorithms = new MyAlgorithms();
 
-        MyAlgorithms myAlgorithms = new MyAlgorithms();
+    myAlgorithms.setPivotSelectorMethod(MyAlgorithms::selectPivotHalf);
 
-        myAlgorithms.setPivotSelectorMethod(MyAlgorithms::selectPivotHalf);
+    IO.println(Arrays.toString(myAlgorithms.quickSort(miArray)));
 
-        System.out.println(Arrays.toString(myAlgorithms.quickSort(miArray)));
-
-    }
 }

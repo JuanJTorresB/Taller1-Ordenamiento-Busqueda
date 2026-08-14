@@ -9,7 +9,7 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
 
     public void setPivotSelectorMethod(Function<int [], Integer> pivotSelectorMethod) {
         this.pivotSelectorMethod = pivotSelectorMethod;
-    };
+    }
 
     public static int selectPivotHalf(int [] arrayEntered){
         return arrayEntered[Math.divideExact(arrayEntered.length, 2)];
