@@ -35,12 +35,38 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
 
     @Override
     public int binarySearch(int[] arrayPorExplorar, int elementoABuscar) {
-        return 0;
+        int pivoteFinal = arrayPorExplorar.length - 1;
+        int pivoteInicial = 0;
+        int pivoteMedio;
+        int prevPivote;
+
+        while (true){
+            pivoteMedio = Math.divideExact((pivoteFinal + pivoteInicial), 2);
+            prevPivote = pivoteMedio;
+            if (elementoABuscar > arrayPorExplorar[pivoteMedio]) pivoteInicial = pivoteMedio;
+            else if (elementoABuscar < arrayPorExplorar[pivoteMedio]) pivoteFinal = pivoteMedio;
+            else return pivoteMedio;
+            if (pivoteFinal == pivoteInicial) break;
+            if (prevPivote == pivoteInicial) pivoteInicial++;
+        }
+        return -1;
     }
 
     @Override
     public int[] bubbleSort(int[] arrayDesordenado) {
-        return new int[0];
+        int memoryElement;
+
+        for (int ii = 0; ii < arrayDesordenado.length - 1; ii++) {
+            for (int i = 0; i < arrayDesordenado.length - 1 - ii; i++) {
+                if (arrayDesordenado[i] > arrayDesordenado[i+1]) {
+                    memoryElement = arrayDesordenado[i + 1];
+                    arrayDesordenado[i + 1] = arrayDesordenado[i];
+                    arrayDesordenado[i] = memoryElement;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(arrayDesordenado));
+        return arrayDesordenado;
     }
 
     @Override

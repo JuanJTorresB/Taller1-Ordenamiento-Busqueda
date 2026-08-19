@@ -5,6 +5,12 @@ void main() {
 
     myAlgorithms.setPivotSelectorMethod(MyAlgorithms::selectPivotHalf);
 
-    IO.println(Arrays.toString(myAlgorithms.quickSort(miArray)));
+    int [] sortedArray = myAlgorithms.quickSort(miArray);
+
+    IO.println(Arrays.toString(sortedArray));
+
+    System.out.println((myAlgorithms.binarySearch(sortedArray, 33)));
+
+    System.out.println(Arrays.toString(myAlgorithms.bubbleSort(miArray)));
 
 }
