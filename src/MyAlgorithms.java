@@ -71,12 +71,51 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
 
     @Override
     public int[] selectionSort(int[] arrayDesordenado) {
-        return new int[0];
+        int memoryElement;
+        boolean switchExecuted = false;
+
+        for (int ii = 0; ii < arrayDesordenado.length - 1; ii++) {
+            int minorElement = arrayDesordenado[ii];
+            int minorElementIndex = ii;
+            for (int i = ii; i < arrayDesordenado.length; i++) {
+                if (minorElement > arrayDesordenado[i]) {
+                    switchExecuted = true;
+                    minorElement = arrayDesordenado[i];
+                    minorElementIndex = i;
+                }
+            }
+            if (switchExecuted){
+                memoryElement = arrayDesordenado[ii];
+                arrayDesordenado[ii] = minorElement;
+                arrayDesordenado[minorElementIndex] = memoryElement;
+            }
+        }
+
+        return arrayDesordenado;
     }
 
     @Override
     public int[] insertionSort(int[] arrayDesordenado) {
-        return new int[0];
+        int[] arrayOrdenado = new int[0];
+        for (int entero : arrayDesordenado) {
+            int[] newArrayOrdenado = new int[arrayOrdenado.length + 1];
+            boolean insertado = false;
+            int ii = 0;
+            for (int j : arrayOrdenado) {
+                if (!insertado && entero < j) {
+                    newArrayOrdenado[ii] = entero;
+                    ii++;
+                    insertado = true;
+                }
+                newArrayOrdenado[ii] = j;
+                ii++;
+            }
+            if (!insertado) {
+                newArrayOrdenado[newArrayOrdenado.length - 1] = entero;
+            }
+            arrayOrdenado = newArrayOrdenado;
+        }
+        return arrayOrdenado;
     }
 
     @Override
