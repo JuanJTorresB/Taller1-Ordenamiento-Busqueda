@@ -7,6 +7,10 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
 
     private Function<int [], Integer> pivotSelectorMethod;
 
+    public MyAlgorithms() {
+        this.pivotSelectorMethod = MyAlgorithms::selectPivotHalf;
+    }
+
     public void setPivotSelectorMethod(Function<int [], Integer> pivotSelectorMethod) {
         this.pivotSelectorMethod = pivotSelectorMethod;
     }
@@ -65,7 +69,6 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
                 }
             }
         }
-        System.out.println(Arrays.toString(arrayDesordenado));
         return arrayDesordenado;
     }
 
@@ -119,8 +122,46 @@ public class MyAlgorithms implements Busquedas, Ordenamientos{
     }
 
     @Override
-    public int[] mergeSort(int[] arrayDesordenado) {
-        return new int[0];
+    public int[] mergeSort(int[] array) {
+        if (array.length <= 1) {
+            return array;
+        }
+        int mitad = array.length / 2;
+        int[] izquierda = new int[mitad];
+        int[] derecha = new int[array.length - mitad];
+        System.arraycopy(array, 0, izquierda, 0, mitad);
+        if (array.length - mitad >= 0) System.arraycopy(array, mitad, derecha, 0, array.length - mitad);
+        izquierda = mergeSort(izquierda);
+        derecha = mergeSort(derecha);
+        return merge(izquierda, derecha);
+    }
+
+    public int[] merge(int[] izquierda, int[] derecha) {
+        int[] resultado = new int[izquierda.length + derecha.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (i < izquierda.length && j < derecha.length) {
+            if (izquierda[i] <= derecha[j]) {
+                resultado[k] = izquierda[i];
+                i++;
+            } else {
+                resultado[k] = derecha[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < izquierda.length) {
+            resultado[k] = izquierda[i];
+            i++;
+            k++;
+        }
+        while (j < derecha.length) {
+            resultado[k] = derecha[j];
+            j++;
+            k++;
+        }
+        return resultado;
     }
 
     @Override
