@@ -23,6 +23,8 @@ void main() {
 
     System.out.println((myAlgorithms.binarySearch(sortedArray, 33)));
 
+    System.out.println((myAlgorithms.linearSearch(sortedArray, 33)));
+
     System.out.println(Arrays.toString(myAlgorithms.bubbleSort(miArray)));
 
     miArray = new int[]{70, 12, 19, 45, 11, 33, 26};
